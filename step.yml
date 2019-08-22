@@ -218,3 +218,8 @@ outputs:
       title: A human-readable summary of the results.
       description: |-
         A nice summary suitable for feeding into something like a slack message.
+  - BITRISE_DEVICEFARM_RESULTS_ZIP:
+      opts:
+        title: An archive summary of the results.
+        description: |-
+          A summary of all test results and errors which can be shown in a browser.
