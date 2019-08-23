@@ -146,7 +146,7 @@ function get_run_final_result {
     run_final_details_zip_url=$(set -eu; echo "${run_final_details_artifacts}" |  jq -r '.artifacts[]  | select( .extension == "zip") | .url' )
     local run_final_details_zip
     run_final_details_zip=$( curl -L -J -o "/result_artifacts.zip" "${run_final_details_zip_url}")
-
+    pwd
     # Output in build log
     echo_details "$run_final_details"
     echo_details "$run_final_details_summary"
