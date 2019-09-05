@@ -144,8 +144,12 @@ function get_run_final_result {
     run_final_details_artifacts=$(set -eu; aws devicefarm list-artifacts --arn="$run_arn" --type="FILE" --output=json)
     local run_final_details_zip_url
     run_final_details_zip_url=$(set -eu; echo "${run_final_details_artifacts}" |  jq -r '.artifacts[]  | select( .extension == "zip") | .url' )
+    local run_final_details_video_url
+    run_final_details_video_url=$(set -eu; echo "${run_final_details_artifacts}" |  jq -r '.artifacts[]  | select( .extension == "mp4") | .url' )
     local run_final_details_zip
     run_final_details_zip=$( curl -L -J -o "/bitrise/deploy/result_artifacts.zip" "${run_final_details_zip_url}")
+    local run_final_details_video
+    run_final_details_video=$( curl -L -J -o "/bitrise/deploy/result_video.mp4" "${run_final_details_video_url}")
 
     # Output in build log
     echo_details "$run_final_details"
